@@ -5,9 +5,7 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
   const [movies, setMovies] = useState([
     {
-      _id: {
-        $oid: "66387d707e234733d72202d8",
-      },
+      _id: 1,
       Title: "Silence of the Lambs",
       Description:
         "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.",
@@ -27,9 +25,7 @@ export const MainView = () => {
       Actors: ["Anthony Hopkins", "Jodie Foster", "Kasi Lemmings"],
     },
     {
-      _id: {
-        $oid: "6639bb7e491a0a26da3434b5",
-      },
+      _id: 2,
       Title: "The Shawshank Redemption",
       Description:
         "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
@@ -48,9 +44,7 @@ export const MainView = () => {
       Actors: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
     },
     {
-      _id: {
-        $oid: "6639bbf6491a0a26da3434b7",
-      },
+      _id: 3,
       Title: "The Godfather",
       Description:
         "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
