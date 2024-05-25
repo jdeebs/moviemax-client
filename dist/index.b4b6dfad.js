@@ -27380,86 +27380,32 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            _id: 1,
-            Title: "Silence of the Lambs",
-            Description: "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer.",
-            Genre: {
-                Name: "Thriller",
-                Description: "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
-            },
-            Director: {
-                Name: "Jonathan Demme",
-                Bio: "Robert Jonathan Demme was an American director, producer, and screenwriter.",
-                Birth: "1944",
-                Death: "2017"
-            },
-            ImagePath: "https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
-            Featured: true,
-            Actors: [
-                "Anthony Hopkins",
-                "Jodie Foster",
-                "Kasi Lemmings"
-            ]
-        },
-        {
-            _id: 2,
-            Title: "The Shawshank Redemption",
-            Description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-            Genre: {
-                Name: "Drama",
-                Description: "Drama is a category of narrative fiction intended to be more serious than humorous in tone, focusing on in-depth development of realistic characters who must deal with realistic emotional struggles."
-            },
-            Director: {
-                Name: "Frank Darabont",
-                Bio: "Frank Darabont is a Hungarian-American film director, screenwriter and producer.",
-                Birth: "1959"
-            },
-            ImagePath: "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-            Featured: true,
-            Actors: [
-                "Tim Robbins",
-                "Morgan Freeman",
-                "Bob Gunton"
-            ]
-        },
-        {
-            _id: 3,
-            Title: "The Godfather",
-            Description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-            Genre: {
-                Name: "Crime",
-                Description: "Crime films are a genre of film that focus on crime, criminals, and the criminal justice system. These films can be fictional dramas or true stories."
-            },
-            Director: {
-                Name: "Francis Ford Coppola",
-                Bio: "Francis Ford Coppola is an American film director, producer, and screenwriter. He was a central figure in the New Hollywood filmmaking movement of the 1960s and 1970s.",
-                Birth: "1939"
-            },
-            ImagePath: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg",
-            Featured: true,
-            Actors: [
-                "Marlon Brando",
-                "Al Pacino",
-                "James Caan"
-            ]
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch("https://movie-max-f53b34b56a95.herokuapp.com/movies").then((response)=>{
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        }).then((data)=>{
+            setMovies(data);
+        }).catch((error)=>{
+            console.error("Fetch error:", error);
+            setError(error.message);
+        });
+    }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 71,
+        lineNumber: 29,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 79,
+        lineNumber: 37,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27470,16 +27416,16 @@ const MainView = ()=>{
                 }
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 43,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 83,
+        lineNumber: 41,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "gxpORIla/sFq5cjD4/UALc3vQjg=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
