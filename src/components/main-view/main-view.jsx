@@ -9,6 +9,8 @@ export const MainView = () => {
 
   const [error, setError] = useState(null);
 
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
     fetch("https://movie-max-f53b34b56a95.herokuapp.com/movies")
       .then((response) => {
@@ -26,9 +28,15 @@ export const MainView = () => {
       });
   }, []);
 
+  if (!user) {
+    return <LoginView />;
+  }
+
   if (selectedMovie) {
     let similarMovies = movies.filter(
-      (movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id
+      (movie) =>
+        movie.Genre.Name === selectedMovie.Genre.Name &&
+        movie._id !== selectedMovie._id
     );
     return (
       <>
