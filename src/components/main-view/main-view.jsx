@@ -7,6 +7,8 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("https://movie-max-f53b34b56a95.herokuapp.com/movies")
       .then((response) => {
