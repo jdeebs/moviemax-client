@@ -1,20 +1,29 @@
 import React from "react";
 import { useState } from "react";
 
-export const LoginView = () => {
+export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      access: username,
-      secret: password,
+      Username: username,
+      Password: password,
     };
 
-    fetch("https://movie-max-f53b34b56a95.herokuapp.com/login.json", {
+    fetch("https://movie-max-f53b34b56a95.herokuapp.com/login", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
+    }).then((response) => {
+      if (response.ok) {
+        onLoggedIn(username);
+      } else {
+        alert("Login failed");
+      }
     });
   };
 
