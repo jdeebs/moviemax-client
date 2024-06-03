@@ -5,21 +5,20 @@ import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
-
   const [error, setError] = useState(null);
-
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    fetch("https://movie-max-f53b34b56a95.herokuapp.com/movies")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    if (!token) {
+      return;
+    }
+
+    fetch("https://movie-max-f53b34b56a95.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
       .then((data) => {
         setMovies(data);
       })
@@ -27,10 +26,22 @@ export const MainView = () => {
         console.error("Fetch error:", error);
         setError(error.message);
       });
-  }, []);
+  }, [token]);
+
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+  };
 
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+    return (
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
+    );
   }
 
   if (selectedMovie) {
@@ -61,7 +72,12 @@ export const MainView = () => {
   }
 
   if (movies.length === 0) {
-    return <div>The list is empty!</div>;
+    return (
+      <div>
+        The list is empty!
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    );
   }
 
   return (
@@ -75,6 +91,7 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
