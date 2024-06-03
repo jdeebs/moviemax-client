@@ -1,35 +1,35 @@
 import { useState } from "react";
 
-export const LoginView = ({ onLoggedIn }) => {
+export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
       Username: username,
       Password: password,
+      Email: email,
+      Birthday: birthday,
     };
 
-    fetch("https://movie-max-f53b34b56a95.herokuapp.com/login", {
+    fetch("https://movie-max-f53b34b56a95.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Login response: ", data);
-        if (data.user) {
-          onLoggedIn(data.user, data.token);
-        } else {
-          alert("No such user");
-        }
-      })
-      .catch((e) => {
-        alert("Something went wrong");
-      });
+    }).then((response) => {
+      if (response.ok) {
+        alert("Signup successful");
+        window.location.reload();
+      } else {
+        alert("Signup failed");
+      }
+    });
   };
 
   return (
@@ -41,6 +41,7 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          minLength="3"
         />
       </label>
       <label>
@@ -49,6 +50,24 @@ export const LoginView = ({ onLoggedIn }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Birthday:
+        <input
+          type="date"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
           required
         />
       </label>
