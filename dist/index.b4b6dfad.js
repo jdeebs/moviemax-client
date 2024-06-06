@@ -27395,6 +27395,8 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -27438,119 +27440,159 @@ const MainView = ()=>{
                     }
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 47,
+                    lineNumber: 48,
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     children: "Or sign up"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 53,
+                    lineNumber: 54,
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 54,
+                    lineNumber: 55,
                     columnNumber: 11
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 46,
+            lineNumber: 47,
             columnNumber: 9
-        }, undefined) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-            md: 8,
+        }, undefined) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                    movie: selectedMovie,
-                    onBackClick: ()=>setSelectedMovie(null)
-                }, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 58,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 62,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                    children: "Similar Movies"
-                }, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 63,
-                    columnNumber: 11
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                    children: movies.filter((movie)=>movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                            className: "mb-5",
-                            md: 3,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                movie: movie,
-                                onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
-                            }, void 0, false, {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 73,
-                                columnNumber: 19
-                            }, undefined)
-                        }, movie._id, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 8,
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                            movie: selectedMovie,
+                            onBackClick: ()=>setSelectedMovie(null)
+                        }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 72,
-                            columnNumber: 17
-                        }, undefined))
+                            lineNumber: 60,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 64,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                            children: "Similar Movies"
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 65,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                            children: movies.filter((movie)=>movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    className: "mb-5",
+                                    md: 3,
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                        movie: movie,
+                                        onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
+                                    }, void 0, false, {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 75,
+                                        columnNumber: 21
+                                    }, undefined)
+                                }, movie._id, false, {
+                                    fileName: "src/components/main-view/main-view.jsx",
+                                    lineNumber: 74,
+                                    columnNumber: 19
+                                }, undefined))
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 66,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 59,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 2,
+                    className: "d-flex align-items-end",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        onClick: handleLogout,
+                        children: "Logout"
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 86,
+                        columnNumber: 13
+                    }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 64,
+                    lineNumber: 85,
                     columnNumber: 11
                 }, undefined)
             ]
-        }, void 0, true, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 57,
-            columnNumber: 9
-        }, undefined) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+        }, void 0, true) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     children: "The list is empty!"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 85,
+                    lineNumber: 91,
                     columnNumber: 11
                 }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     onClick: handleLogout,
                     children: "Logout"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 86,
+                    lineNumber: 92,
                     columnNumber: 11
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 84,
+            lineNumber: 90,
             columnNumber: 9
-        }, undefined) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                className: "mb-5",
-                md: 3,
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                    movie: movie,
-                    onMovieClick: (newSelectedMovie)=>{
-                        setSelectedMovie(newSelectedMovie);
-                    }
+        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                        className: "mb-5",
+                        md: 3,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                            movie: movie,
+                            onMovieClick: (newSelectedMovie)=>{
+                                setSelectedMovie(newSelectedMovie);
+                            }
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 98,
+                            columnNumber: 15
+                        }, undefined)
+                    }, movie._id, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 97,
+                        columnNumber: 13
+                    }, undefined)),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 12,
+                    className: "d-flex justify-content-end",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        onClick: handleLogout,
+                        children: "Logout"
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 107,
+                        columnNumber: 13
+                    }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 91,
-                    columnNumber: 13
+                    lineNumber: 106,
+                    columnNumber: 11
                 }, undefined)
-            }, movie._id, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 90,
-                columnNumber: 11
-            }, undefined))
+            ]
+        }, void 0, true)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 45,
         columnNumber: 5
     }, undefined);
 };
@@ -27564,7 +27606,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7czMT","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7czMT","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -29884,7 +29926,126 @@ const Col = /*#__PURE__*/ _react.forwardRef(// Need to define the default "as" d
 Col.displayName = "Col";
 exports.default = Col;
 
-},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU"}],"hEdsw":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU"}],"aPzUt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _classnames = require("classnames");
+var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
+var _react = require("react");
+var _button = require("@restart/ui/Button");
+var _themeProvider = require("./ThemeProvider");
+var _jsxRuntime = require("react/jsx-runtime");
+"use client";
+const Button = /*#__PURE__*/ _react.forwardRef(({ as, bsPrefix, variant = "primary", size, active = false, disabled = false, className, ...props }, ref)=>{
+    const prefix = (0, _themeProvider.useBootstrapPrefix)(bsPrefix, "btn");
+    const [buttonProps, { tagName }] = (0, _button.useButtonProps)({
+        tagName: as,
+        disabled,
+        ...props
+    });
+    const Component = tagName;
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)(Component, {
+        ...buttonProps,
+        ...props,
+        ref: ref,
+        disabled: disabled,
+        className: (0, _classnamesDefault.default)(className, prefix, active && "active", variant && `${prefix}-${variant}`, size && `${prefix}-${size}`, props.href && disabled && "disabled")
+    });
+});
+Button.displayName = "Button";
+exports.default = Button;
+
+},{"classnames":"jocGM","react":"21dqq","@restart/ui/Button":"8YUbR","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU"}],"8YUbR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "isTrivialHref", ()=>isTrivialHref);
+parcelHelpers.export(exports, "useButtonProps", ()=>useButtonProps);
+var _react = require("react");
+var _jsxRuntime = require("react/jsx-runtime");
+const _excluded = [
+    "as",
+    "disabled"
+];
+function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+    for(i = 0; i < sourceKeys.length; i++){
+        key = sourceKeys[i];
+        if (excluded.indexOf(key) >= 0) continue;
+        target[key] = source[key];
+    }
+    return target;
+}
+function isTrivialHref(href) {
+    return !href || href.trim() === "#";
+}
+function useButtonProps({ tagName, disabled, href, target, rel, role, onClick, tabIndex = 0, type }) {
+    if (!tagName) {
+        if (href != null || target != null || rel != null) tagName = "a";
+        else tagName = "button";
+    }
+    const meta = {
+        tagName
+    };
+    if (tagName === "button") return [
+        {
+            type: type || "button",
+            disabled
+        },
+        meta
+    ];
+    const handleClick = (event)=>{
+        if (disabled || tagName === "a" && isTrivialHref(href)) event.preventDefault();
+        if (disabled) {
+            event.stopPropagation();
+            return;
+        }
+        onClick == null || onClick(event);
+    };
+    const handleKeyDown = (event)=>{
+        if (event.key === " ") {
+            event.preventDefault();
+            handleClick(event);
+        }
+    };
+    if (tagName === "a") {
+        // Ensure there's a href so Enter can trigger anchor button.
+        href || (href = "#");
+        if (disabled) href = undefined;
+    }
+    return [
+        {
+            role: role != null ? role : "button",
+            // explicitly undefined so that it overrides the props disabled in a spread
+            // e.g. <Tag {...props} {...hookProps} />
+            disabled: undefined,
+            tabIndex: disabled ? undefined : tabIndex,
+            href,
+            target: tagName === "a" ? target : undefined,
+            "aria-disabled": !disabled ? undefined : disabled,
+            rel: tagName === "a" ? rel : undefined,
+            onClick: handleClick,
+            onKeyDown: handleKeyDown
+        },
+        meta
+    ];
+}
+const Button = /*#__PURE__*/ _react.forwardRef((_ref, ref)=>{
+    let { as: asProp, disabled } = _ref, props = _objectWithoutPropertiesLoose(_ref, _excluded);
+    const [buttonProps, { tagName: Component }] = useButtonProps(Object.assign({
+        tagName: asProp,
+        disabled
+    }, props));
+    return /*#__PURE__*/ (0, _jsxRuntime.jsx)(Component, Object.assign({}, props, buttonProps, {
+        ref: ref
+    }));
+});
+Button.displayName = "Button";
+exports.default = Button;
+
+},{"react":"21dqq","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"hKDFU"}],"hEdsw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");

@@ -5,6 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -54,48 +55,58 @@ export const MainView = () => {
           <SignupView />
         </Col>
       ) : selectedMovie ? (
-        <Col md={8}>
-          <MovieView
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
-          />
-          <hr />
-          <h2>Similar Movies</h2>
-          <Row>
-            {movies
-              .filter(
-                (movie) =>
-                  movie.Genre.Name === selectedMovie.Genre.Name &&
-                  movie._id !== selectedMovie._id
-              )
-              .map((movie) => (
-                <Col className="mb-5" key={movie._id} md={3}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) =>
-                      setSelectedMovie(newSelectedMovie)
-                    }
-                  />
-                </Col>
-              ))}
-          </Row>
-        </Col>
+        <>
+          <Col md={8}>
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+            <hr />
+            <h2>Similar Movies</h2>
+            <Row>
+              {movies
+                .filter(
+                  (movie) =>
+                    movie.Genre.Name === selectedMovie.Genre.Name &&
+                    movie._id !== selectedMovie._id
+                )
+                .map((movie) => (
+                  <Col className="mb-5" key={movie._id} md={3}>
+                    <MovieCard
+                      movie={movie}
+                      onMovieClick={(newSelectedMovie) =>
+                        setSelectedMovie(newSelectedMovie)
+                      }
+                    />
+                  </Col>
+                ))}
+            </Row>
+          </Col>
+          <Col md={2} className="d-flex align-items-end">
+            <Button onClick={handleLogout}>Logout</Button>
+          </Col>
+        </>
       ) : movies.length === 0 ? (
         <Col>
           <div>The list is empty!</div>
-          <button onClick={handleLogout}>Logout</button>
+          <Button onClick={handleLogout}>Logout</Button>
         </Col>
       ) : (
-        movies.map((movie) => (
-          <Col className="mb-5" key={movie._id} md={3}>
-            <MovieCard
-              movie={movie}
-              onMovieClick={(newSelectedMovie) => {
-                setSelectedMovie(newSelectedMovie);
-              }}
-            />
+        <>
+          {movies.map((movie) => (
+            <Col className="mb-5" key={movie._id} md={3}>
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))}
+          <Col md={12} className="d-flex justify-content-end">
+            <Button onClick={handleLogout}>Logout</Button>
           </Col>
-        ))
+        </>
       )}
     </Row>
   );
