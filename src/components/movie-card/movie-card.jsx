@@ -3,14 +3,16 @@ import Card from "react-bootstrap/Card";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (
-    <Card className="h-100">
+    <Card className="h-100 card">
       <div
         onClick={() => {
           onMovieClick(movie);
         }}
       >
-        <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body>
+        <div className="img-container">
+          <Card.Img className="card-img" src={movie.ImagePath} />
+        </div>
+        <Card.Body className="card-body">
           <Card.Title>{movie.Title}</Card.Title>
         </Card.Body>
       </div>
@@ -24,8 +26,8 @@ MovieCard.propTypes = {
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Genre: PropTypes.string.isRequired,
-    Director: PropTypes.string.isRequired,
+    Genre: PropTypes.object.isRequired,
+    Director: PropTypes.object.isRequired,
     Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired,

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./movie-view.scss";
+import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 export const MovieView = ({ movie, onBackClick }) => {
@@ -28,7 +28,9 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Cast: </span>
         <span>{movie.Actors.join(", ")}</span>
       </div>
-      <Button onClick={onBackClick}>Back</Button>
+      <Col md={12} className="d-flex justify-content-end">
+        <Button onClick={onBackClick}>Back</Button>
+      </Col>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import "./index.scss";
 const MovieMaxApp = () => {
   return (
     <Container>
-      <MainView />;
+      <MainView />
     </Container>
   );
 };
