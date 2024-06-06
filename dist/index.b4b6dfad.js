@@ -27696,8 +27696,12 @@ MovieCard.propTypes = {
         _id: (0, _propTypesDefault.default).string.isRequired,
         Title: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
-        Genre: (0, _propTypesDefault.default).object.isRequired,
-        Director: (0, _propTypesDefault.default).object.isRequired,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
         Actors: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string).isRequired
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
@@ -29911,17 +29915,21 @@ const MovieView = ({ movie, onBackClick })=>{
     }, undefined);
 };
 _c = MovieView;
-// Define props constraints for MovieView
+// Define props constraints for MovieCard
 MovieView.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         _id: (0, _propTypesDefault.default).string.isRequired,
         Title: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
-        Genre: (0, _propTypesDefault.default).string.isRequired,
-        Director: (0, _propTypesDefault.default).string.isRequired,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
         Actors: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string).isRequired
     }).isRequired,
-    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+    onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieView");

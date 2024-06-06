@@ -35,15 +35,19 @@ export const MovieView = ({ movie, onBackClick }) => {
   );
 };
 
-// Define props constraints for MovieView
+// Define props constraints for MovieCard
 MovieView.propTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Genre: PropTypes.string.isRequired,
-    Director: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+    }).isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+    }).isRequired,
     Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
+  onBackClick: PropTypes.func.isRequired,
 };
