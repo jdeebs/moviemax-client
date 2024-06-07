@@ -46,6 +46,9 @@ export const MainView = () => {
       {!user ? (
         <Col md={5}>
           <div>
+            <h1 className="display-1 d-flex justify-content-center">MovieMax</h1>
+          </div>
+          <div>
             <h1>Login</h1>
           </div>
           <LoginView
@@ -88,13 +91,17 @@ export const MainView = () => {
             </Row>
           </Col>
           <Col md={2} className="d-flex align-items-end">
-            <Button variant="danger" onClick={handleLogout}>Logout</Button>
+            <Button variant="danger" onClick={handleLogout}>
+              Logout
+            </Button>
           </Col>
         </>
       ) : movies.length === 0 ? (
         <Col>
           <div>The list is empty!</div>
-          <Button variant="danger" onClick={handleLogout}>Logout</Button>
+          <Button variant="danger" onClick={handleLogout}>
+            Logout
+          </Button>
         </Col>
       ) : (
         <>
@@ -109,7 +116,9 @@ export const MainView = () => {
             </Col>
           ))}
           <Col md={12} className="d-flex justify-content-end">
-            <Button variant="danger" onClick={handleLogout}>Logout</Button>
+            <Button variant="danger" onClick={handleLogout}>
+              Logout
+            </Button>
           </Col>
         </>
       )}

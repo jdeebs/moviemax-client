@@ -13198,4 +13198,8 @@ body {
   border: none;
   box-shadow: 0 4px 8px #0000001a;
 }
+
+.login-button, .signup-button {
+  margin: 8px 0;
+}
 /*# sourceMappingURL=index.db9ed22c.css.map */
