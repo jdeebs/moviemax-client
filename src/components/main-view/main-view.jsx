@@ -88,13 +88,13 @@ export const MainView = () => {
             </Row>
           </Col>
           <Col md={2} className="d-flex align-items-end">
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </Col>
         </>
       ) : movies.length === 0 ? (
         <Col>
           <div>The list is empty!</div>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button variant="danger" onClick={handleLogout}>Logout</Button>
         </Col>
       ) : (
         <>
@@ -109,7 +109,7 @@ export const MainView = () => {
             </Col>
           ))}
           <Col md={12} className="d-flex justify-content-end">
-            <Button onClick={handleLogout}>Logout</Button>
+            <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </Col>
         </>
       )}

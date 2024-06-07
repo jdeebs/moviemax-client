@@ -27533,6 +27533,7 @@ const MainView = ()=>{
                     md: 2,
                     className: "d-flex align-items-end",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        variant: "danger",
                         onClick: handleLogout,
                         children: "Logout"
                     }, void 0, false, {
@@ -27556,6 +27557,7 @@ const MainView = ()=>{
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    variant: "danger",
                     onClick: handleLogout,
                     children: "Logout"
                 }, void 0, false, {
@@ -27595,6 +27597,7 @@ const MainView = ()=>{
                     md: 12,
                     className: "d-flex justify-content-end",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        variant: "danger",
                         onClick: handleLogout,
                         children: "Logout"
                     }, void 0, false, {
@@ -27648,16 +27651,9 @@ const MovieCard = ({ movie, onMovieClick })=>{
                 onMovieClick(movie);
             },
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "img-container",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
-                        className: "card-img",
-                        src: movie.ImagePath
-                    }, void 0, false, {
-                        fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 13,
-                        columnNumber: 11
-                    }, undefined)
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
+                    className: "card-img",
+                    src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
                     lineNumber: 12,
@@ -27669,12 +27665,12 @@ const MovieCard = ({ movie, onMovieClick })=>{
                         children: movie.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 16,
+                        lineNumber: 14,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 15,
+                    lineNumber: 13,
                     columnNumber: 9
                 }, undefined)
             ]

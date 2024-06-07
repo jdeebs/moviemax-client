@@ -9,9 +9,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
           onMovieClick(movie);
         }}
       >
-        <div className="img-container">
-          <Card.Img className="card-img" src={movie.ImagePath} />
-        </div>
+        <Card.Img className="card-img" src={movie.ImagePath} />
         <Card.Body className="card-body">
           <Card.Title>{movie.Title}</Card.Title>
         </Card.Body>
