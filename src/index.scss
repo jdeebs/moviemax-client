@@ -1,3 +1,32 @@
-img {
-  max-width: 400px;
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap");
+
+$font-family: "M PLUS Rounded 1c", sans-serif;
+
+$primary: #363c4d;
+$secondary: #7980804c;
+$success: #109756;
+$danger: #b95840;
+$warning: #e9b610;
+$info: #946184;
+$light: #e6e7f9;
+$dark: #1a1919;
+
+// Import at bottom to avoid issues
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Custom CSS below bootstrap import to overwrite
+
+body {
+  font-family: $font-family;
+}
+
+.card {
+    background-color: $secondary;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-button,
+.signup-button {
+    margin: 8px 0 8px 0;
 }

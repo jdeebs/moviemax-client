@@ -3,6 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -38,69 +41,87 @@ export const MainView = () => {
     localStorage.removeItem("user", "token");
   };
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        Or sign up
-        <SignupView />
-      </>
-    );
-  }
-
-  if (selectedMovie) {
-    let similarMovies = movies.filter(
-      (movie) =>
-        movie.Genre.Name === selectedMovie.Genre.Name &&
-        movie._id !== selectedMovie._id
-    );
-    return (
-      <>
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-        <hr />
-        <h2>Similar Movies</h2>
-        {similarMovies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) =>
-              setSelectedMovie(newSelectedMovie)
-            }
-          />
-        ))}
-      </>
-    );
-  }
-
-  if (movies.length === 0) {
-    return (
-      <div>
-        The list is empty!
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <Col md={5}>
+          <div>
+            <h1 className="display-1 d-flex justify-content-center">MovieMax</h1>
+          </div>
+          <div>
+            <h1>Login</h1>
+          </div>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }}
+          />
+          <div>
+            <h1>Or Sign Up</h1>
+          </div>
+          <SignupView />
+        </Col>
+      ) : selectedMovie ? (
+        <>
+          <Col md={8}>
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+            <hr />
+            <h2>Similar Movies</h2>
+            <Row>
+              {movies
+                .filter(
+                  (movie) =>
+                    movie.Genre.Name === selectedMovie.Genre.Name &&
+                    movie._id !== selectedMovie._id
+                )
+                .map((movie) => (
+                  <Col className="mb-5" key={movie._id} md={5} sm={6}>
+                    <MovieCard
+                      movie={movie}
+                      onMovieClick={(newSelectedMovie) =>
+                        setSelectedMovie(newSelectedMovie)
+                      }
+                    />
+                  </Col>
+                ))}
+            </Row>
+          </Col>
+          <Col md={2} className="d-flex align-items-end">
+            <Button variant="danger" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Col>
+        </>
+      ) : movies.length === 0 ? (
+        <Col>
+          <div>The list is empty!</div>
+          <Button variant="danger" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Col>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <Col className="mb-5" key={movie._id} xs={12} sm={6} md={4} lg={3}>
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))}
+          <Col md={12} className="d-flex justify-content-end">
+            <Button variant="danger" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Col>
+        </>
+      )}
+    </Row>
   );
 };
