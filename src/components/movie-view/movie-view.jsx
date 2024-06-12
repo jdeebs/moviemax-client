@@ -1,12 +1,21 @@
 import PropTypes from "prop-types";
 import { Col, Row, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((m) => m._id === movieId);
+
   return (
     <Container className="mt-4">
       <Row>
         <Col md={6} className="mb-4">
-          <img src={movie.ImagePath} alt={movie.Title} className="img-fluid rounded" />
+          <img
+            src={movie.ImagePath}
+            alt={movie.Title}
+            className="img-fluid rounded"
+          />
         </Col>
         <Col md={6}>
           <h3 className="mb-3">{movie.Title}</h3>
@@ -22,11 +31,9 @@ export const MovieView = ({ movie, onBackClick }) => {
           <p>
             <strong>Cast: </strong> {movie.Actors.join(", ")}
           </p>
-          <div className="d-flex justify-content-end mt-4">
-            <Button variant="secondary" onClick={onBackClick}>
-              Back
-            </Button>
-          </div>
+          <Link to={`/`}>
+            <Button className="back-button">Back</Button>
+          </Link>
         </Col>
       </Row>
     </Container>

@@ -38,7 +38,8 @@ export const MainView = () => {
     setUser(null);
     setToken(null);
     // Clear local storage upon logout
-    localStorage.removeItem("user", "token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   return (
@@ -67,14 +68,19 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
                   </Col>
                 )}
               </>
             }
           />
           <Route
-            path="/movies"
+            path="/movies/:title"
             element={
               <>
                 {!user ? (
@@ -85,7 +91,7 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col key={movie._id} md={3} className="mb-4">
-                        <MovieView movie={movie} />
+                        <MovieCard movie={movie} />
                       </Col>
                     ))}
                   </>
@@ -104,7 +110,9 @@ export const MainView = () => {
                 ) : (
                   <>
                     {movies.map((movie) => (
-                      <Col className="mb-4" key={movie._id} md={3}></Col>
+                      <Col className="mb-4" key={movie._id} md={3}>
+                        <MovieCard movie={movie} />
+                      </Col>
                     ))}
                   </>
                 )}
