@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Col, Row, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();

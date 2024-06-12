@@ -80,7 +80,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies/:title"
+            path="/movies/:movieId"
             element={
               <>
                 {!user ? (
@@ -88,13 +88,9 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col key={movie._id} md={3} className="mb-4">
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
                 )}
               </>
             }
