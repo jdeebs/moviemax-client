@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Col } from "react-bootstrap";
 
-export const ProfileUpdate = ({ username, token, user, onUpdatedUserInfo }) => {
+export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
   const [formData, setFormData] = useState({
-    Username: user.Username,
+    Username: "",
     Password: "",
-    Email: user.Email,
-    Birthday: user.Birthday,
+    Email: "",
+    Birthday: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Update formData when user prop changes
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        Username: user.Username,
+        Email: user.Email,
+        Birthday: user.Birthday,
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +44,10 @@ export const ProfileUpdate = ({ username, token, user, onUpdatedUserInfo }) => {
           },
         }
       );
-      onUpdatedUserInfo(response.data);
+      // Update state and local storage with new user data
+      const updatedUser = response.data;
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      onProfileUpdate(updatedUser);
       alert("Profile updated successfully");
     } catch (error) {
       setError(error.message);

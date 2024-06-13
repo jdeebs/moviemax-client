@@ -3,11 +3,13 @@ import axios from "axios";
 import { Col } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { ProfileUpdate } from "./profile-update";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileView = ({ username, token }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -20,8 +22,7 @@ export const ProfileView = ({ username, token }) => {
             },
           }
         );
-        const user = response.data;
-        setUser(user);
+        setUser(response.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -34,6 +35,9 @@ export const ProfileView = ({ username, token }) => {
 
   const handleUpdate = (updatedUser) => {
     setUser(updatedUser);
+
+    // Update the URL with the updated username upon refresh
+    navigate(`/users/${updatedUser.Username}`, { replace: true });
   };
 
   if (loading) {
@@ -58,12 +62,13 @@ export const ProfileView = ({ username, token }) => {
         username={username}
         token={token}
         user={user}
-        onUpdatedUserInfo={handleUpdate}
+        onProfileUpdate={handleUpdate}
       />
     </Col>
   );
 };
 
+// Format birthday date to look more user friendly
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(dateString).toLocaleDateString(undefined, options);
