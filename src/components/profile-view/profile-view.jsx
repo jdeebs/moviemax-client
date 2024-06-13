@@ -1,53 +1,63 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
-export const ProfileView = () => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(null);
-    const [error, setError] = useState(null);
+export const ProfileView = ({ username, token }) => {
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get("/users");
-                setUser(response.data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(
+          `https://movie-max-f53b34b56a95.herokuapp.com/users/${username}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const userData = response.data;
+        setEmail(userData.Email);
+        setBirthday(formatDate(userData.Birthday));
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchUserData();
-    }, []);
+    fetchUserData();
+  }, [username, token]);
 
-    if (loading) {
-        return <div>Loading...</div>
-    }
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    if (!user) {
-        return <div>No user data available.</div>;
-    }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-    return (
-        <div className="profile-view">
-            <h1>Profile Info</h1>
-            <div>
-                <strong>Name:</strong> {user.Name}
-            </div>
-            <div>
-                <strong>Email:</strong> {user.Email}
-            </div>
-            <div>
-                <strong>Username:</strong> {user.Username}
-            </div>
-            <div>
-                <strong>Birthday:</strong> {user.Birthday}
-            </div>
-        </div>
-    )
+  return (
+    <Col md={8} className="profile-view">
+      <h1>Profile Info</h1>
+      <div>
+        <strong>Username:</strong> {username}
+      </div>
+      <div>
+        <strong>Email:</strong> {email}
+      </div>
+      <div>
+        <strong>Birthday:</strong> {birthday}
+      </div>
+    </Col>
+  );
 };
