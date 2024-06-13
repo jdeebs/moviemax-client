@@ -42209,12 +42209,11 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
+var _userInfo = require("./user-info");
 var _s = $RefreshSig$();
 const ProfileView = ({ username, token })=>{
     _s();
-    const [email, setEmail] = (0, _react.useState)("");
-    const [birthday, setBirthday] = (0, _react.useState)("");
+    const [user, setUser] = (0, _react.useState)(null);
     const [loading, setLoading] = (0, _react.useState)(true);
     const [error, setError] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
@@ -42225,9 +42224,8 @@ const ProfileView = ({ username, token })=>{
                         Authorization: `Bearer ${token}`
                     }
                 });
-                const userData = response.data;
-                setEmail(userData.Email);
-                setBirthday(formatDate(userData.Birthday));
+                const user = response.data;
+                setUser(user);
             } catch (error) {
                 setError(error.message);
             } finally{
@@ -42239,19 +42237,11 @@ const ProfileView = ({ username, token })=>{
         username,
         token
     ]);
-    const formatDate = (dateString)=>{
-        const options = {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        };
-        return new Date(dateString).toLocaleDateString(undefined, options);
-    };
     if (loading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Loading..."
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 42,
+        lineNumber: 35,
         columnNumber: 12
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42261,7 +42251,7 @@ const ProfileView = ({ username, token })=>{
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 46,
+        lineNumber: 39,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -42272,69 +42262,35 @@ const ProfileView = ({ username, token })=>{
                 children: "Profile Info"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 51,
+                lineNumber: 44,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                        children: "Username:"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 53,
-                        columnNumber: 9
-                    }, undefined),
-                    " ",
-                    username
-                ]
-            }, void 0, true, {
+            user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
+                username: user.Username,
+                email: user.Email,
+                birthday: formatDate(user.Birthday)
+            }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 52,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                        children: "Email:"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 56,
-                        columnNumber: 9
-                    }, undefined),
-                    " ",
-                    email
-                ]
-            }, void 0, true, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 55,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
-                        children: "Birthday:"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 59,
-                        columnNumber: 9
-                    }, undefined),
-                    " ",
-                    birthday
-                ]
-            }, void 0, true, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 58,
-                columnNumber: 7
+                lineNumber: 46,
+                columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 50,
+        lineNumber: 43,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "l6dp8VlU9kgCi9QK5TVukrJ1RUs=");
+_s(ProfileView, "PA9FxEY9xSNRrsSqaLtbYei52Hs=");
 _c = ProfileView;
+const formatDate = (dateString)=>{
+    const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+};
 var _c;
 $RefreshReg$(_c, "ProfileView");
 
@@ -42343,7 +42299,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu","react-bootstrap":"3AD9A","react-router-dom":"9xmpe"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu","react-bootstrap":"3AD9A","./user-info":"66eot"}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
@@ -47044,6 +47000,62 @@ Object.entries(HttpStatusCode).forEach(([key, value])=>{
 });
 exports.default = HttpStatusCode;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy"}],"lJZlQ":[function() {},{}]},["4XsM3","1vc5N","d8Dch"], "d8Dch", "parcelRequire8770")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy"}],"66eot":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1330.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UserInfo", ()=>UserInfo);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const UserInfo = ({ birthday, email, username })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "Username: ",
+                    username
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile-view/user-info.jsx",
+                lineNumber: 5,
+                columnNumber: 5
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "Email: ",
+                    email
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile-view/user-info.jsx",
+                lineNumber: 6,
+                columnNumber: 5
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: [
+                    "Birthday: ",
+                    birthday
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile-view/user-info.jsx",
+                lineNumber: 7,
+                columnNumber: 5
+            }, undefined)
+        ]
+    }, void 0, true);
+_c = UserInfo;
+var _c;
+$RefreshReg$(_c, "UserInfo");
+
+  $parcel$ReactRefreshHelpers$1330.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu"}],"lJZlQ":[function() {},{}]},["4XsM3","1vc5N","d8Dch"], "d8Dch", "parcelRequire8770")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

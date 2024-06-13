@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { UserInfo } from "./user-info";
 
 export const ProfileView = ({ username, token }) => {
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,9 +19,8 @@ export const ProfileView = ({ username, token }) => {
             },
           }
         );
-        const userData = response.data;
-        setEmail(userData.Email);
-        setBirthday(formatDate(userData.Birthday));
+        const user = response.data;
+        setUser(user);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -32,11 +30,6 @@ export const ProfileView = ({ username, token }) => {
 
     fetchUserData();
   }, [username, token]);
-
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -49,15 +42,18 @@ export const ProfileView = ({ username, token }) => {
   return (
     <Col md={8} className="profile-view">
       <h1>Profile Info</h1>
-      <div>
-        <strong>Username:</strong> {username}
-      </div>
-      <div>
-        <strong>Email:</strong> {email}
-      </div>
-      <div>
-        <strong>Birthday:</strong> {birthday}
-      </div>
+      {user && (
+        <UserInfo
+          username={user.Username}
+          email={user.Email}
+          birthday={formatDate(user.Birthday)}
+        />
+      )}
     </Col>
   );
+};
+
+const formatDate = (dateString) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(dateString).toLocaleDateString(undefined, options);
 };
