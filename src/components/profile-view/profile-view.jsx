@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col } from "react-bootstrap";
 import { UserInfo } from "./user-info";
+import { ProfileUpdate } from "./profile-update";
 
 export const ProfileView = ({ username, token }) => {
   const [user, setUser] = useState(null);
@@ -31,6 +32,10 @@ export const ProfileView = ({ username, token }) => {
     fetchUserData();
   }, [username, token]);
 
+  const handleUpdate = (updatedUser) => {
+    setUser(updatedUser);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -49,6 +54,12 @@ export const ProfileView = ({ username, token }) => {
           birthday={formatDate(user.Birthday)}
         />
       )}
+      <ProfileUpdate
+        username={username}
+        token={token}
+        user={user}
+        onUpdatedUserInfo={handleUpdate}
+      />
     </Col>
   );
 };
