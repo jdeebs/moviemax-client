@@ -42216,6 +42216,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _userInfo = require("./user-info");
 var _profileUpdate = require("./profile-update");
+var _profileDelete = require("./profile-delete");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
 const ProfileView = ({ username, token })=>{
@@ -42223,6 +42224,7 @@ const ProfileView = ({ username, token })=>{
     const [user, setUser] = (0, _react.useState)({});
     const [loading, setLoading] = (0, _react.useState)(true);
     const [error, setError] = (0, _react.useState)(null);
+    const [isDeleting, setIsDeleting] = (0, _react.useState)(false);
     const navigate = (0, _reactRouterDom.useNavigate)();
     (0, _react.useEffect)(()=>{
         const fetchUserData = async ()=>{
@@ -42251,11 +42253,34 @@ const ProfileView = ({ username, token })=>{
             replace: true
         });
     };
+    const handleDelete = async ()=>{
+        if (window.confirm("Are you sure you want to delete your profile?")) {
+            setIsDeleting(true);
+            try {
+                // Send delete request to backend API
+                const response = await (0, _axiosDefault.default).delete(`https://movie-max-f53b34b56a95.herokuapp.com/users/${username}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (response.status === 200) {
+                    alert("Profile deleted");
+                    navigate("/login");
+                } else {
+                    alert("Failed to delete profile:", response.statusText);
+                    // User cancelled deletion
+                    setIsDeleting(false);
+                }
+            } catch (error) {
+                console.error("Error deleting profile:", error);
+            }
+        }
+    };
     if (loading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Loading..."
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 44,
+        lineNumber: 74,
         columnNumber: 12
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42265,7 +42290,7 @@ const ProfileView = ({ username, token })=>{
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 48,
+        lineNumber: 78,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -42276,7 +42301,7 @@ const ProfileView = ({ username, token })=>{
                 children: "Profile Info"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 53,
+                lineNumber: 83,
                 columnNumber: 7
             }, undefined),
             user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
@@ -42285,7 +42310,7 @@ const ProfileView = ({ username, token })=>{
                 birthday: formatDate(user.Birthday)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 55,
+                lineNumber: 85,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileUpdate.ProfileUpdate), {
@@ -42295,17 +42320,25 @@ const ProfileView = ({ username, token })=>{
                 onProfileUpdate: handleUpdate
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 61,
+                lineNumber: 91,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileDelete.ProfileDelete), {
+                username: username,
+                onDelete: handleDelete
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 97,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 52,
+        lineNumber: 82,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "41YEtB+DVKqqB0mWgFjJRW2n0Lk=", false, function() {
+_s(ProfileView, "8AmLOp4CKaWWm3XEsBHZ3PmLjrc=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate)
     ];
@@ -42328,7 +42361,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu","react-bootstrap":"3AD9A","./user-info":"66eot","./profile-update":"gGXsm","react-router-dom":"9xmpe"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu","react-bootstrap":"3AD9A","./user-info":"66eot","./profile-update":"gGXsm","react-router-dom":"9xmpe","./profile-delete":"e7yrF"}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
@@ -47316,6 +47349,47 @@ $RefreshReg$(_c, "ProfileUpdate");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu"}],"lJZlQ":[function() {},{}]},["4XsM3","1vc5N","d8Dch"], "d8Dch", "parcelRequire8770")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu"}],"e7yrF":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$82d8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$82d8.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ProfileDelete", ()=>ProfileDelete);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _s = $RefreshSig$();
+function ProfileDelete(username) {
+    _s();
+    const [isDeleting, setIsDeleting] = (0, _react.useState)(false);
+    const handleDelete = async ()=>{
+        username.onDelete(setIsDeleting);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+        disabled: isDeleting,
+        onClick: handleDelete,
+        children: isDeleting ? "Deleting..." : "Delete Profile"
+    }, void 0, false, {
+        fileName: "src/components/profile-view/profile-delete.jsx",
+        lineNumber: 12,
+        columnNumber: 7
+    }, this);
+}
+_s(ProfileDelete, "PcvudgQ4pB1b8YUmRhNmcS3boU8=");
+_c = ProfileDelete;
+var _c;
+$RefreshReg$(_c, "ProfileDelete");
+
+  $parcel$ReactRefreshHelpers$82d8.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"7Pggy","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"kJ9nu","react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A"}],"lJZlQ":[function() {},{}]},["4XsM3","1vc5N","d8Dch"], "d8Dch", "parcelRequire8770")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

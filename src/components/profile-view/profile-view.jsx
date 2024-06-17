@@ -3,12 +3,14 @@ import axios from "axios";
 import { Col } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { ProfileUpdate } from "./profile-update";
+import { ProfileDelete } from "./profile-delete";
 import { useNavigate } from "react-router-dom";
 
 export const ProfileView = ({ username, token }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +42,34 @@ export const ProfileView = ({ username, token }) => {
     navigate(`/users/${updatedUser.Username}`, { replace: true });
   };
 
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete your profile?")) {
+      setIsDeleting(true);
+      try {
+        // Send delete request to backend API
+        const response = await axios.delete(
+          `https://movie-max-f53b34b56a95.herokuapp.com/users/${username}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          alert("Profile deleted");
+          navigate("/login");
+        } else {
+          alert("Failed to delete profile:", response.statusText);
+          // User cancelled deletion
+          setIsDeleting(false);
+        }
+      } catch (error) {
+        console.error("Error deleting profile:", error);
+      }
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -64,6 +94,7 @@ export const ProfileView = ({ username, token }) => {
         user={user}
         onProfileUpdate={handleUpdate}
       />
+      <ProfileDelete username={username} onDelete={handleDelete} />
     </Col>
   );
 };
