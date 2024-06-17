@@ -6,7 +6,7 @@ import { ProfileUpdate } from "./profile-update";
 import { ProfileDelete } from "./profile-delete";
 import { useNavigate } from "react-router-dom";
 
-export const ProfileView = ({ username, token }) => {
+export const ProfileView = ({ username, token, onLogout }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -58,6 +58,8 @@ export const ProfileView = ({ username, token }) => {
 
         if (response.status === 200) {
           alert("Profile deleted");
+          // Call onLogout from MainView to perform logout
+          onLogout();
           navigate("/login");
         } else {
           alert("Failed to delete profile:", response.statusText);

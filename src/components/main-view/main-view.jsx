@@ -94,7 +94,10 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView username={user.Username} token={token} />
+                    <ProfileView username={user.Username} token={token}
+                    // Pass handleLogout to ProfileView
+                    onLogout={handleLogout}
+                    />
                   </Col>
                 )}
               </>
