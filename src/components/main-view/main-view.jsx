@@ -94,10 +94,12 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col md={8}>
-                    <ProfileView username={user.Username} token={token}
-                    movies={movies}
-                    // Pass handleLogout to ProfileView
-                    onLogout={handleLogout}
+                    <ProfileView
+                      username={user.Username}
+                      token={token}
+                      movies={movies}
+                      // Pass handleLogout to ProfileView
+                      onLogout={handleLogout}
                     />
                   </Col>
                 )}

@@ -18,6 +18,7 @@ export const FavoriteMovies = ({ favoriteMovies }) => {
   );
 };
 
+// Define props constraints for FavoriteMovies
 FavoriteMovies.propTypes = {
   favoriteMovies: PropTypes.arrayOf(
     PropTypes.shape({

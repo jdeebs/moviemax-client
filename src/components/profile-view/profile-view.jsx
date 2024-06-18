@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { ProfileUpdate } from "./profile-update";
 import { ProfileDelete } from "./profile-delete";
+import { FavoriteMovies } from "./favorite-movies";
 import { useNavigate } from "react-router-dom";
 
-export const ProfileView = ({ username, token, onLogout }) => {
+export const ProfileView = ({ username, token, onLogout, movies }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -80,6 +82,11 @@ export const ProfileView = ({ username, token, onLogout }) => {
     return <div>Error: {error}</div>;
   }
 
+  // Filter favorite movies
+  const favoriteMovies = movies.filter((m) =>
+    user.FavoriteMovies.includes(m._id)
+  );
+
   return (
     <Col md={8} className="profile-view">
       <h1>Profile Info</h1>
@@ -97,6 +104,7 @@ export const ProfileView = ({ username, token, onLogout }) => {
         onProfileUpdate={handleUpdate}
       />
       <ProfileDelete username={username} onDelete={handleDelete} />
+      <FavoriteMovies favoriteMovies={favoriteMovies} />
     </Col>
   );
 };
@@ -105,4 +113,26 @@ export const ProfileView = ({ username, token, onLogout }) => {
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(dateString).toDateString(undefined, options);
+};
+
+// Define props constraints for ProfileView
+ProfileView.propTypes = {
+  username: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+      }).isRequired,
+      Director: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+      }).isRequired,
+      Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+      ImagePath: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
