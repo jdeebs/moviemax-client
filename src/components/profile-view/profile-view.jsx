@@ -104,7 +104,19 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
         onProfileUpdate={handleUpdate}
       />
       <ProfileDelete username={username} onDelete={handleDelete} />
-      <FavoriteMovies favoriteMovies={favoriteMovies} />
+      <FavoriteMovies
+        favoriteMovies={favoriteMovies}
+        user={user}
+        token={token}
+        onUpdateFavorites={(movieId) => {
+          setUser((prevUser) => ({
+            ...prevUser,
+            FavoriteMovies: prevUser.FavoriteMovies.filter(
+              (id) => id !== movieId
+            ),
+          }));
+        }}
+      />
     </Col>
   );
 };
