@@ -89,33 +89,47 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
 
   return (
     <Row className="justify-content-center">
-      <Col xs={12} md={12} lg={12} className="mt-4">
-        <h1>Profile Info</h1>
-        <UserInfo
-          username={user.Username}
-          email={user.Email}
-          birthday={formatDate(user.Birthday)}
-        />
-        <ProfileUpdate
-          username={username}
-          token={token}
-          user={user}
-          onProfileUpdate={handleUpdate}
-        />
-        <ProfileDelete username={username} onDelete={handleDelete} />
-        <FavoriteMovies
-          favoriteMovies={favoriteMovies}
-          user={user}
-          token={token}
-          onUpdateFavorites={(movieId) => {
-            setUser((prevUser) => ({
-              ...prevUser,
-              FavoriteMovies: prevUser.FavoriteMovies.filter(
-                (id) => id !== movieId
-              ),
-            }));
-          }}
-        />
+      <Col xs={12}>
+        <Row className="mb-4">
+          <Col className="text-center">
+            <h1>Profile Info</h1>
+          </Col>
+        </Row>
+        <Row className="mb-4">
+          <Col xs={12} md={6}>
+            <UserInfo
+              username={user.Username}
+              email={user.Email}
+              birthday={formatDate(user.Birthday)}
+            />
+          </Col>
+          <Col xs={12} md={6}>
+            <ProfileUpdate
+              username={username}
+              token={token}
+              user={user}
+              onProfileUpdate={handleUpdate}
+            />
+            <ProfileDelete username={username} onDelete={handleDelete} />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <FavoriteMovies
+              favoriteMovies={favoriteMovies}
+              user={user}
+              token={token}
+              onUpdateFavorites={(movieId) => {
+                setUser((prevUser) => ({
+                  ...prevUser,
+                  FavoriteMovies: prevUser.FavoriteMovies.filter(
+                    (id) => id !== movieId
+                  ),
+                }));
+              }}
+            />
+          </Col>
+        </Row>
       </Col>
     </Row>
   );
