@@ -47058,61 +47058,70 @@ const ProfileView = ({ username, token, onLogout, movies })=>{
     }, undefined);
     // Filter favorite movies
     const favoriteMovies = movies.filter((m)=>user.FavoriteMovies.includes(m._id));
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-        md: 8,
-        className: "profile-view",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                children: "Profile Info"
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 92,
-                columnNumber: 7
-            }, undefined),
-            user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
-                username: user.Username,
-                email: user.Email,
-                birthday: formatDate(user.Birthday)
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 94,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileUpdate.ProfileUpdate), {
-                username: username,
-                token: token,
-                user: user,
-                onProfileUpdate: handleUpdate
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 100,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileDelete.ProfileDelete), {
-                username: username,
-                onDelete: handleDelete
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 106,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovies.FavoriteMovies), {
-                favoriteMovies: favoriteMovies,
-                user: user,
-                token: token,
-                onUpdateFavorites: (movieId)=>{
-                    setUser((prevUser)=>({
-                            ...prevUser,
-                            FavoriteMovies: prevUser.FavoriteMovies.filter((id)=>id !== movieId)
-                        }));
-                }
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 107,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+        className: "justify-content-center",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+            xs: 12,
+            md: 12,
+            lg: 12,
+            className: "mt-4",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    children: "Profile Info"
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 93,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
+                    username: user.Username,
+                    email: user.Email,
+                    birthday: formatDate(user.Birthday)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 94,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileUpdate.ProfileUpdate), {
+                    username: username,
+                    token: token,
+                    user: user,
+                    onProfileUpdate: handleUpdate
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 99,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileDelete.ProfileDelete), {
+                    username: username,
+                    onDelete: handleDelete
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 105,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovies.FavoriteMovies), {
+                    favoriteMovies: favoriteMovies,
+                    user: user,
+                    token: token,
+                    onUpdateFavorites: (movieId)=>{
+                        setUser((prevUser)=>({
+                                ...prevUser,
+                                FavoriteMovies: prevUser.FavoriteMovies.filter((id)=>id !== movieId)
+                            }));
+                    }
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 106,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/profile-view/profile-view.jsx",
+            lineNumber: 92,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
         lineNumber: 91,
         columnNumber: 5

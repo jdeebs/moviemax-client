@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { ProfileUpdate } from "./profile-update";
 import { ProfileDelete } from "./profile-delete";
@@ -88,36 +88,36 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
   );
 
   return (
-    <Col md={8} className="profile-view">
-      <h1>Profile Info</h1>
-      {user && (
+    <Row className="justify-content-center">
+      <Col xs={12} md={12} lg={12} className="mt-4">
+        <h1>Profile Info</h1>
         <UserInfo
           username={user.Username}
           email={user.Email}
           birthday={formatDate(user.Birthday)}
         />
-      )}
-      <ProfileUpdate
-        username={username}
-        token={token}
-        user={user}
-        onProfileUpdate={handleUpdate}
-      />
-      <ProfileDelete username={username} onDelete={handleDelete} />
-      <FavoriteMovies
-        favoriteMovies={favoriteMovies}
-        user={user}
-        token={token}
-        onUpdateFavorites={(movieId) => {
-          setUser((prevUser) => ({
-            ...prevUser,
-            FavoriteMovies: prevUser.FavoriteMovies.filter(
-              (id) => id !== movieId
-            ),
-          }));
-        }}
-      />
-    </Col>
+        <ProfileUpdate
+          username={username}
+          token={token}
+          user={user}
+          onProfileUpdate={handleUpdate}
+        />
+        <ProfileDelete username={username} onDelete={handleDelete} />
+        <FavoriteMovies
+          favoriteMovies={favoriteMovies}
+          user={user}
+          token={token}
+          onUpdateFavorites={(movieId) => {
+            setUser((prevUser) => ({
+              ...prevUser,
+              FavoriteMovies: prevUser.FavoriteMovies.filter(
+                (id) => id !== movieId
+              ),
+            }));
+          }}
+        />
+      </Col>
+    </Row>
   );
 };
 
