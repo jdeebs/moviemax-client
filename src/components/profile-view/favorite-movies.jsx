@@ -25,9 +25,9 @@ export const FavoriteMovies = ({
   return (
     <>
       <h2 className="mt-4">Favorite Movies</h2>
-      <Row>
+      <Row xs={1} sm={2} md={3} lg={4} xl={4} className="g-4">
         {favoriteMovies.map((movie) => (
-          <Col key={movie._id} md={3} className="mb-3">
+          <Col key={movie._id}>
             <Card>
               <Card.Img variant="top" src={movie.ImagePath} />
               <Card.Body>
@@ -35,6 +35,7 @@ export const FavoriteMovies = ({
                 <Button
                   variant="danger"
                   onClick={() => handleRemoveFavorite(movie._id)}
+                  className="w-100"
                 >
                   Remove Favorite
                 </Button>

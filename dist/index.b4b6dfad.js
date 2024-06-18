@@ -47530,9 +47530,13 @@ const FavoriteMovies = ({ favoriteMovies, user, token, onUpdateFavorites })=>{
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                xs: 1,
+                sm: 2,
+                md: 3,
+                lg: 4,
+                xl: 4,
+                className: "g-4",
                 children: favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                        md: 3,
-                        className: "mb-3",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
@@ -47555,6 +47559,7 @@ const FavoriteMovies = ({ favoriteMovies, user, token, onUpdateFavorites })=>{
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                             variant: "danger",
                                             onClick: ()=>handleRemoveFavorite(movie._id),
+                                            className: "w-100",
                                             children: "Remove Favorite"
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/favorite-movies.jsx",
