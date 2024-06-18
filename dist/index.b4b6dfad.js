@@ -47361,6 +47361,8 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
             localStorage.setItem("user", JSON.stringify(updatedUser));
             onProfileUpdate(updatedUser);
             alert("Profile updated successfully");
+            // Force window reload after successful update
+            window.location.reload();
         } catch (error) {
             setError(error.message);
             alert("Failed to update profile");
@@ -47376,7 +47378,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                 children: "Edit Profile"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 62,
+                lineNumber: 65,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47389,7 +47391,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 65,
+                                lineNumber: 68,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47401,13 +47403,13 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 minLength: "3"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 66,
+                                lineNumber: 69,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 64,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47417,7 +47419,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 children: "New Password:"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 76,
+                                lineNumber: 79,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47427,13 +47429,13 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 onChange: handleChange
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 77,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 75,
+                        lineNumber: 78,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47443,7 +47445,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 children: "Email:"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 85,
+                                lineNumber: 88,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47454,13 +47456,13 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 required: true
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 86,
+                                lineNumber: 89,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 84,
+                        lineNumber: 87,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47470,7 +47472,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 children: "Birthday:"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 95,
+                                lineNumber: 98,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47481,13 +47483,13 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                                 required: true
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-update.jsx",
-                                lineNumber: 96,
+                                lineNumber: 99,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 94,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -47497,7 +47499,7 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                         children: loading ? "Updating..." : "Update"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 104,
+                        lineNumber: 107,
                         columnNumber: 9
                     }, undefined),
                     error && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -47508,19 +47510,19 @@ const ProfileUpdate = ({ username, token, user, onProfileUpdate })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 107,
+                        lineNumber: 110,
                         columnNumber: 19
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 63,
+                lineNumber: 66,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-update.jsx",
-        lineNumber: 61,
+        lineNumber: 64,
         columnNumber: 5
     }, undefined);
 };

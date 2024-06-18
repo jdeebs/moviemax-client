@@ -49,6 +49,9 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
       localStorage.setItem("user", JSON.stringify(updatedUser));
       onProfileUpdate(updatedUser);
       alert("Profile updated successfully");
+      
+      // Force window reload after successful update
+      window.location.reload();
     } catch (error) {
       setError(error.message);
       alert("Failed to update profile");
