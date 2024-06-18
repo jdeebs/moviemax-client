@@ -43,6 +43,16 @@ export const MainView = () => {
     localStorage.removeItem("token");
   };
 
+  const handleFavorite = (movieId, isAdding) => {
+    const updatedUser = {
+      ...user,
+      FavoriteMovies: isAdding
+        ? [...user.FavoriteMovies, movieId]
+        : user.FavoriteMovies.filter((id) => id !== movieId),
+    };
+    setUser(updatedUser);
+  };
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -116,7 +126,12 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView
+                      movies={movies}
+                      user={user}
+                      token={token}
+                      onFavorite={handleFavorite}
+                    />
                   </Col>
                 )}
               </>
@@ -134,7 +149,7 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-4" key={movie._id} md={3}>
-                        <MovieCard movie={movie} />
+                        <MovieCard movie={movie} user={user} token={token} />
                       </Col>
                     ))}
                   </>

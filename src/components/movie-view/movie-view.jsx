@@ -1,12 +1,44 @@
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { Col, Row, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, token, onFavorite }) => {
   const { movieId } = useParams();
-
   const movie = movies.find((m) => m._id === movieId);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    if (user.FavoriteMovies.includes(movieId)) {
+      setIsFavorite(true);
+    }
+  }, [movieId, user.FavoriteMovies]);
+
+  const handleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await axios.delete(
+          `https://movie-max-f53b34b56a95.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      } else {
+        await axios.post(
+          `https://movie-max-f53b34b56a95.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
+      onFavorite(movieId, !isFavorite);
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Error updating favorite movie:", error);
+    }
+  };
 
   return (
     <Container className="mt-4">
@@ -35,6 +67,12 @@ export const MovieView = ({ movies }) => {
           <Link to={`/`}>
             <Button className="back-button">Back</Button>
           </Link>
+          <Button
+            onClick={handleFavorite}
+            variant={isFavorite ? "danger" : "primary"}
+          >
+            {isFavorite ? "Unfavorite" : "Favorite"}
+          </Button>
         </Col>
       </Row>
     </Container>
@@ -57,4 +95,7 @@ MovieView.propTypes = {
       Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ).isRequired,
+  user: PropTypes.object.isRequired,
+  token: PropTypes.string.isRequired,
+  onFavorite: PropTypes.func.isRequired,
 };
