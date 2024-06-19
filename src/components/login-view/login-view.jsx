@@ -28,7 +28,7 @@ export const LoginView = ({ onLoggedIn }) => {
           // Check the state after user login
           onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user");
+          alert("Incorrect username or password");
         }
       })
       .catch((e) => {
