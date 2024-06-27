@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setMovies } from "../../redux/reducers/movies";
+import { setMovies } from "../../redux/reducers/movies/movies";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
