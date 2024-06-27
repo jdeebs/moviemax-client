@@ -8,14 +8,18 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const movies = useSelector((state) => state.movies);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!token) {
@@ -27,13 +31,14 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setMovies(data);
+        // Dispatch action to set movies in the Redux store
+        dispatch(setMovies(data));
       })
       .catch((error) => {
         console.error("Fetch error:", error);
         setError(error.message);
       });
-  }, [token]);
+  }, [token, dispatch]);
 
   const handleLogout = () => {
     setUser(null);
@@ -127,7 +132,6 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView
-                      movies={movies}
                       user={user}
                       token={token}
                       onFavorite={handleFavorite}

@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Col, Row, Button, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
-export const MovieView = ({ movies, user, token, onFavorite }) => {
+export const MovieView = ({ user, token, onFavorite }) => {
+  const movies = useSelector((state) => state.movies);
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
   const [isFavorite, setIsFavorite] = useState(false);
