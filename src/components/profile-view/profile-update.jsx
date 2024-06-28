@@ -104,7 +104,7 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={loading}>
+        <Button variant="primary" type="submit" disabled={loading} className="update-button">
           {loading ? "Updating..." : "Update"}
         </Button>
         {error && <div className="text-danger mt-3">Error: {error}</div>}

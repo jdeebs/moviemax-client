@@ -28,7 +28,7 @@ export const FavoriteMovies = ({
       <Row xs={1} sm={2} md={8} xl={4} className="g-4">
         {favoriteMovies.map((movie) => (
           <Col key={movie._id}>
-            <Card>
+            <Card className="favorite-movies-card">
               <Card.Img variant="top" src={movie.ImagePath} />
               <Card.Body>
                 <Card.Title>{movie.Title}</Card.Title>
