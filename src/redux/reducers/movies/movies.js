@@ -8,10 +8,10 @@ const moviesSlice = createSlice({
   },
   reducers: {
     setMovies: (state, action) => {
-      return action.payload;
+      state.list = action.payload;
     },
     setFilter: (state, action) => {
-      return action.payload;
+      state.filter = action.payload;
     },
   },
 });

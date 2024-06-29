@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { MoviesList } from "../movies-list/movies-list";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
@@ -143,7 +144,7 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              <>{!user ? <Navigate to="/login" replace /> : <BooksList />}</>
+              <>{!user ? <Navigate to="/login" replace /> : <MoviesList />}</>
             }
           />
         </Routes>
