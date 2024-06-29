@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
@@ -17,7 +16,7 @@ export const MainView = () => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.list);
 
   const dispatch = useDispatch();
 
@@ -144,21 +143,7 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie._id} sm={4} md={3}>
-                        <MovieCard movie={movie} user={user} token={token} />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
+              <>{!user ? <Navigate to="/login" replace /> : <BooksList />}</>
             }
           />
         </Routes>

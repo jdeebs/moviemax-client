@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 export const MovieView = ({ user, token, onFavorite }) => {
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.list);
   const { movieId } = useParams();
   const movie = movies.find((m) => m._id === movieId);
   const [isFavorite, setIsFavorite] = useState(false);
