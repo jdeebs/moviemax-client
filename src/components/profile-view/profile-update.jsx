@@ -5,20 +5,19 @@ import moment from "moment";
 
 export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
   const [formData, setFormData] = useState({
-    Username: "",
+    Username: user.Username || "",
     Password: "",
-    Email: "",
-    Birthday: "",
+    Email: user.Email || "",
+    Birthday: user.Birthday || "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Update formData when user prop changes
   useEffect(() => {
     if (user) {
       setFormData({
-        Username: user.Username,
-        Email: user.Email,
+        Username: user.Username || "",
+        Email: user.Email || "",
         Birthday: user.Birthday ? formatDate(user.Birthday) : "",
       });
     }
@@ -38,32 +37,40 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
     try {
       const response = await axios.put(
         `https://movie-max-f53b34b56a95.herokuapp.com/users/${username}`,
-        formData,
+        {
+          ...formData,
+          Birthday: formatDate(formData.Birthday),
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      // Update state and local storage with new user data
       const updatedUser = response.data;
       localStorage.setItem("user", JSON.stringify(updatedUser));
       onProfileUpdate(updatedUser);
       alert("Profile updated successfully");
-      
       // Force window reload after successful update
       window.location.reload();
     } catch (error) {
       setError(error.message);
       alert("Failed to update profile");
+      // Force window reload after failed update
+      window.location.reload();
     } finally {
       setLoading(false);
     }
   };
 
-  // Function to format date to "yyyy-MM-dd"
   const formatDate = (dateString) => {
-    return moment(dateString).format("YYYY-MM-DD");
+    // Parse the UTC date string
+    let utcDate = moment.utc(dateString);
+
+    // Format to "YYYY-MM-DD" ignoring the offset
+    let formattedDate = utcDate.format("YYYY-MM-DD");
+
+    return formattedDate;
   };
 
   return (
@@ -109,7 +116,12 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={loading} className="update-button">
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={loading}
+          className="update-button"
+        >
           {loading ? "Updating..." : "Update"}
         </Button>
         {error && <div className="text-danger mt-3">Error: {error}</div>}

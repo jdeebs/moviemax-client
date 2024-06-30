@@ -88,8 +88,8 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
     user.FavoriteMovies.includes(m._id)
   );
 
-  // Format date to "MM-DD-YYYY"
-  const formattedBirthday = moment(user.Birthday).format("MM-DD-YYYY");
+  // Format date to "MM-DD-YYYY" ignoring the offset
+  const formattedBirthday = moment.utc(user.Birthday).format("MM-DD-YYYY");
 
   return (
     <Row className="justify-content-center">
