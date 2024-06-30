@@ -24,8 +24,7 @@ export const FavoriteMovies = ({
   };
   return (
     <>
-      <h2 className="mt-4">Favorite Movies</h2>
-      <Row xs={1} sm={2} md={8} xl={4} className="g-4">
+      <Row xs={1} sm={2} md={3} lg={4} xl={8} className="g-4">
         {favoriteMovies.map((movie) => (
           <Col key={movie._id}>
             <Card className="favorite-movies-card">

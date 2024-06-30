@@ -62,7 +62,6 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
 
   return (
     <Col md={8} className="profile-update">
-      <h2>Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>

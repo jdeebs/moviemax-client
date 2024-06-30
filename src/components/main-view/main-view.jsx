@@ -5,8 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies/movies";
@@ -66,89 +65,94 @@ export const MainView = () => {
           handleLogout();
         }}
       />
-      <Row className="justify-content-md-center">
-        <Routes>
-          <Route
-            path="/users"
-            element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/users/:Username"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : (
-                  <Col md={8}>
-                    <ProfileView
-                      username={user.Username}
-                      token={token}
-                      movies={movies}
-                      // Pass handleLogout to ProfileView
-                      onLogout={handleLogout}
-                    />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView
-                      user={user}
-                      token={token}
-                      onFavorite={handleFavorite}
-                    />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <>{!user ? <Navigate to="/login" replace /> : <MoviesList />}</>
-            }
-          />
-        </Routes>
-      </Row>
+      <Container>
+        <Row className="justify-content-center">
+          <Col>
+            <Routes>
+              <Route
+                path="/users"
+                element={
+                  <>
+                    {user ? (
+                      <Navigate to="/" />
+                    ) : (
+                      <Col md={5}>
+                        <SignupView />
+                      </Col>
+                    )}
+                  </>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <>
+                    {user ? (
+                      <Navigate to="/" />
+                    ) : (
+                      <Col md={5}>
+                        <LoginView
+                          onLoggedIn={(user, token) => {
+                            setUser(user);
+                            setToken(token);
+                          }}
+                        />
+                      </Col>
+                    )}
+                  </>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <>
+                    {!user ? <Navigate to="/login" replace /> : <MoviesList />}
+                  </>
+                }
+              />
+              <Route
+                path="/users/:Username"
+                element={
+                  <>
+                    {!user ? (
+                      <Navigate to="/login" replace />
+                    ) : (
+                      <Col xs={12}>
+                        <ProfileView
+                          username={user.Username}
+                          token={token}
+                          movies={movies}
+                          onLogout={handleLogout}
+                        />
+                      </Col>
+                    )}
+                  </>
+                }
+              />
+              <Route
+                path="/movies/:movieId"
+                element={
+                  <>
+                    {!user ? (
+                      <Navigate to="/login" replace />
+                    ) : movies.length === 0 ? (
+                      <Col>The list is empty!</Col>
+                    ) : (
+                      <Col md={8}>
+                        <MovieView
+                          user={user}
+                          token={token}
+                          onFavorite={handleFavorite}
+                        />
+                      </Col>
+                    )}
+                  </>
+                }
+              />
+            </Routes>
+          </Col>
+        </Row>
+      </Container>
     </BrowserRouter>
   );
 };

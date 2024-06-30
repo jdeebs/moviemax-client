@@ -18,6 +18,23 @@ $dark: #1a1919;
 
 body {
   font-family: $font-family;
+  background-color: $light;
+}
+
+.navbar {
+  background-color: $secondary;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 20px auto;
 }
 
 .card {
@@ -29,17 +46,17 @@ body {
     width: 80vw; /* Adjusted width for smaller screens */
     height: 320px; /* Adjusted height for smaller screens */
     margin: 0 auto;
-}
+  }
 }
 
 .favorite-movies-card {
-  width: auto;
+  width: 100%;
   height: auto;
   margin-bottom: 10px;
 
   @media (max-width: 574px) {
-    margin: 0 20px 0 20px;
-}
+    margin: 0 20px 10px 20px;
+  }
 }
 
 .card-img {
@@ -60,3 +77,9 @@ body {
   margin: 8px 8px 8px 0;
 }
 
+.profile-section {
+  background-color: $secondary;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}

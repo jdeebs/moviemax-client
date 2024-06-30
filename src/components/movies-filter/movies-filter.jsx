@@ -9,6 +9,7 @@ export const MoviesFilter = () => {
 
   return (
     <Form.Control
+      className="search-filter"
       type="text"
       placeholder="Search..."
       value={filter}
