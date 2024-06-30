@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Col } from "react-bootstrap";
+import moment from "moment";
 
 export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
       setFormData({
         Username: user.Username,
         Email: user.Email,
-        Birthday: user.Birthday,
+        Birthday: user.Birthday ? formatDate(user.Birthday) : "",
       });
     }
   }, [user]);
@@ -58,6 +59,11 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Function to format date to "yyyy-MM-dd"
+  const formatDate = (dateString) => {
+    return moment(dateString).format("YYYY-MM-DD");
   };
 
   return (
