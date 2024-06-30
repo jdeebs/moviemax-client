@@ -90,7 +90,7 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
   return (
     <Row className="justify-content-center">
       <Col lg={8}>
-        <div className="profile-section">
+        <div className="profile-section mb-4 p-4">
           <h1 className="text-center mb-4">Profile Info</h1>
           <UserInfo
             username={user.Username}
@@ -98,7 +98,7 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
             birthday={formatDate(user.Birthday)}
           />
         </div>
-        <div className="profile-section">
+        <div className="profile-section mb-4 p-4">
           <h2 className="text-center mb-4">Update Info</h2>
           <ProfileUpdate
             username={username}
@@ -111,7 +111,7 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
       </Col>
       <Row className="mb-4">
         <Col xs={12}>
-          <div className="profile-section">
+          <div className="profile-section p-4">
             <h2 className="text-center mb-4">Favorite Movies</h2>
             <FavoriteMovies
               favoriteMovies={favoriteMovies}
