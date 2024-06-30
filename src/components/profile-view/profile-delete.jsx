@@ -9,7 +9,7 @@ export function ProfileDelete(username) {
     };
   
     return (
-      <Button disabled={isDeleting} onClick={handleDelete}>
+      <Button variant="danger" disabled={isDeleting} onClick={handleDelete}>
         {isDeleting ? "Deleting..." : "Delete Profile"}
       </Button>
     );

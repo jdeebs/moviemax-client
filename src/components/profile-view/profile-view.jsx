@@ -89,32 +89,30 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
 
   return (
     <Row className="justify-content-center">
-      <Col xs={12}>
-        <Row className="mb-4">
-          <Col className="text-center">
-            <h1>Profile Info</h1>
-          </Col>
-        </Row>
-        <Row className="mb-4">
-          <Col xs={12} md={6}>
-            <UserInfo
-              username={user.Username}
-              email={user.Email}
-              birthday={formatDate(user.Birthday)}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <ProfileUpdate
-              username={username}
-              token={token}
-              user={user}
-              onProfileUpdate={handleUpdate}
-            />
-            <ProfileDelete username={username} onDelete={handleDelete} />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
+      <Col lg={8}>
+        <div className="profile-section mb-4 p-4">
+          <h1 className="text-center mb-4">Profile Info</h1>
+          <UserInfo
+            username={user.Username}
+            email={user.Email}
+            birthday={formatDate(user.Birthday)}
+          />
+        </div>
+        <div className="profile-section mb-4 p-4">
+          <h2 className="text-center mb-4">Update Info</h2>
+          <ProfileUpdate
+            username={username}
+            token={token}
+            user={user}
+            onProfileUpdate={handleUpdate}
+          />
+          <ProfileDelete username={username} onDelete={handleDelete} />
+        </div>
+      </Col>
+      <Row className="mb-4">
+        <Col xs={12}>
+          <div className="profile-section p-4">
+            <h2 className="text-center mb-4">Favorite Movies</h2>
             <FavoriteMovies
               favoriteMovies={favoriteMovies}
               user={user}
@@ -128,9 +126,9 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
                 }));
               }}
             />
-          </Col>
-        </Row>
-      </Col>
+          </div>
+        </Col>
+      </Row>
     </Row>
   );
 };
