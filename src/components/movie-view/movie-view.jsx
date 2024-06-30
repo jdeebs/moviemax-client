@@ -84,20 +84,6 @@ export const MovieView = ({ user, token, onFavorite }) => {
 
 // Define props constraints for MovieCard
 MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ).isRequired,
   user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired,
   onFavorite: PropTypes.func.isRequired,
