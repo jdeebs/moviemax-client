@@ -17,6 +17,7 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
   const initialFormData = {
     Username: user.Username || "",
     Password: "",
+    ConfirmPassword: "",
     Email: user.Email || "",
     Birthday: user.Birthday ? formatDate(user.Birthday) : "",
   };
@@ -24,18 +25,17 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
   const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
-  // Remove useEffect that updates formData based on user prop changes
-  // useEffect(() => {
-  //   if (user) {
-  //     setFormData({
-  //       Username: user.Username || "",
-  //       Password: "",
-  //       Email: user.Email || "",
-  //       Birthday: user.Birthday ? formatDate(user.Birthday) : "",
-  //     });
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    setFormData({
+      Username: user.Username || "",
+      Password: "",
+      ConfirmPassword: "",
+      Email: user.Email || "",
+      Birthday: user.Birthday ? formatDate(user.Birthday) : "",
+    });
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,10 +43,34 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
       ...prevData,
       [name]: value,
     }));
+
+    if (name === "Password" || name === "ConfirmPassword") {
+      if (
+        (name === "Password" && value !== formData.ConfirmPassword) ||
+        (name === "ConfirmPassword" && value !== formData.Password)
+      ) {
+        setPasswordError("Passwords do not match.");
+      } else {
+        setPasswordError(null);
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if passwords match
+    if (formData.Password !== formData.ConfirmPassword) {
+      setPasswordError("Passwords do not match.");
+      return;
+    }
+
+    // Check if password meets minimum length requirement
+    if (formData.Password.length > 0 && formData.Password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long.");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await axios.put(
@@ -99,6 +123,19 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
             value={formData.Password}
             onChange={handleChange}
           />
+        </Form.Group>
+        <Form.Group controlId="formConfirmPassword">
+          <Form.Label>Confirm New Password:</Form.Label>
+          <Form.Control
+            type="password"
+            name="ConfirmPassword"
+            value={formData.ConfirmPassword}
+            onChange={handleChange}
+            isInvalid={!!passwordError}
+          />
+          <Form.Control.Feedback type="invalid">
+            {passwordError}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formEmail">
           <Form.Label>Email:</Form.Label>
