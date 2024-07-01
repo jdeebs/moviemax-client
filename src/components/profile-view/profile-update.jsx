@@ -4,24 +4,38 @@ import { Form, Button, Col } from "react-bootstrap";
 import moment from "moment";
 
 export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
-  const [formData, setFormData] = useState({
+  const formatDate = (dateString) => {
+    // Parse the UTC date string
+    let utcDate = moment.utc(dateString);
+
+    // Format to "YYYY-MM-DD" ignoring the offset
+    let formattedDate = utcDate.format("YYYY-MM-DD");
+
+    return formattedDate;
+  };
+
+  const initialFormData = {
     Username: user.Username || "",
     Password: "",
     Email: user.Email || "",
-    Birthday: user.Birthday || "",
-  });
+    Birthday: user.Birthday ? formatDate(user.Birthday) : "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        Username: user.Username || "",
-        Email: user.Email || "",
-        Birthday: user.Birthday ? formatDate(user.Birthday) : "",
-      });
-    }
-  }, [user]);
+  // Remove useEffect that updates formData based on user prop changes
+  // useEffect(() => {
+  //   if (user) {
+  //     setFormData({
+  //       Username: user.Username || "",
+  //       Password: "",
+  //       Email: user.Email || "",
+  //       Birthday: user.Birthday ? formatDate(user.Birthday) : "",
+  //     });
+  //   }
+  // }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,16 +75,6 @@ export const ProfileUpdate = ({ username, token, user, onProfileUpdate }) => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const formatDate = (dateString) => {
-    // Parse the UTC date string
-    let utcDate = moment.utc(dateString);
-
-    // Format to "YYYY-MM-DD" ignoring the offset
-    let formattedDate = utcDate.format("YYYY-MM-DD");
-
-    return formattedDate;
   };
 
   return (
