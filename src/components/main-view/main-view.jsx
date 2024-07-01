@@ -73,13 +73,15 @@ export const MainView = () => {
                 path="/users"
                 element={
                   <>
+                  <Row className="justify-content-center">
                     {user ? (
                       <Navigate to="/" />
                     ) : (
-                      <Col md={5}>
+                      <Col xs={12} sm={12} md={8} lg={4}>
                         <SignupView />
                       </Col>
                     )}
+                    </Row>
                   </>
                 }
               />
@@ -87,10 +89,11 @@ export const MainView = () => {
                 path="/login"
                 element={
                   <>
+                  <Row className="justify-content-center">
                     {user ? (
                       <Navigate to="/" />
                     ) : (
-                      <Col md={5}>
+                      <Col xs={12} sm={12} md={8} lg={4}>
                         <LoginView
                           onLoggedIn={(user, token) => {
                             setUser(user);
@@ -99,6 +102,7 @@ export const MainView = () => {
                         />
                       </Col>
                     )}
+                    </Row>
                   </>
                 }
               />
@@ -133,19 +137,21 @@ export const MainView = () => {
                 path="/movies/:movieId"
                 element={
                   <>
-                    {!user ? (
-                      <Navigate to="/login" replace />
-                    ) : movies.length === 0 ? (
-                      <Col>The list is empty!</Col>
-                    ) : (
-                      <Col md={8}>
-                        <MovieView
-                          user={user}
-                          token={token}
-                          onFavorite={handleFavorite}
-                        />
-                      </Col>
-                    )}
+                    <Row className="justify-content-center">
+                      {!user ? (
+                        <Navigate to="/login" replace />
+                      ) : movies.length === 0 ? (
+                        <Col>The list is empty!</Col>
+                      ) : (
+                        <Col md={8}>
+                          <MovieView
+                            user={user}
+                            token={token}
+                            onFavorite={handleFavorite}
+                          />
+                        </Col>
+                      )}
+                    </Row>
                   </>
                 }
               />

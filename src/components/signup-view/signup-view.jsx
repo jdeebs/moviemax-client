@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 export const SignupView = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,10 @@ export const SignupView = () => {
     }));
 
     if (name === "password" || name === "confirmPassword") {
-      validatePasswords(name === "password" ? value : formData.password, name === "confirmPassword" ? value : formData.confirmPassword);
+      validatePasswords(
+        name === "password" ? value : formData.password,
+        name === "confirmPassword" ? value : formData.confirmPassword
+      );
     }
   };
 
@@ -69,66 +73,72 @@ export const SignupView = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-          minLength="3"
-        />
-      </Form.Group>
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          isInvalid={!!passwordError}
-        />
-      </Form.Group>
-      <Form.Group controlId="formConfirmPassword">
-        <Form.Label>Confirm Password:</Form.Label>
-        <Form.Control
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-          isInvalid={!!passwordError}
-        />
-        <Form.Control.Feedback type="invalid">
-          {passwordError}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group controlId="formEmail">
-        <Form.Label>Email:</Form.Label>
-        <Form.Control
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Birthday:</Form.Label>
-        <Form.Control
-          type="date"
-          name="birthday"
-          value={formData.birthday}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" className="signup-button">
-        Submit
-      </Button>
-    </Form>
+    <Container className="mt-4">
+      <Row className="justify-content-center">
+        <Col md={12}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+                minLength="3"
+              />
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                isInvalid={!!passwordError}
+              />
+            </Form.Group>
+            <Form.Group controlId="formConfirmPassword">
+              <Form.Label>Confirm Password:</Form.Label>
+              <Form.Control
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                isInvalid={!!passwordError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {passwordError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Birthday:</Form.Label>
+              <Form.Control
+                type="date"
+                name="birthday"
+                value={formData.birthday}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="signup-button">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
