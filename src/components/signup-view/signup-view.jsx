@@ -73,7 +73,7 @@ export const SignupView = () => {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="signup-section mb-4 p-4">
       <Row className="justify-content-center">
         <Col md={12}>
           <Form onSubmit={handleSubmit}>

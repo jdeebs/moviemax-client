@@ -38,7 +38,7 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="login-section mb-4 p-4">
       <Row className="justify-content-center">
         <Col xs={12}>
           <Form onSubmit={handleSubmit}>
