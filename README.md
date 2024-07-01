@@ -8,19 +8,41 @@ The **MovieMax** project is a single-page, responsive application built using Re
 
 - [Project Overview](#project-overview)
 - [Features](#features)
-  - [Essential Views & Features](#essential-views--features)
-  - [Optional Views & Features](#optional-views--features)
+  - [Views and Features](#views-and-features)
 - [User Stories](#user-stories)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
+- [Deployment](#deployment)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Features
 
-### Essential Views & Features
+### Views & Features
 
-### Optional Views & Features
+- **Main View:**
+  - Returns all movies to the user (each movie item with an image and title).
+  - Allows filtering the list of movies with a search feature.
+  - Ability to select a movie for more details.
+  - Ability to log out.
+  - Ability to navigate to Profile View.
+
+- **Single Movie View:**
+  - Returns data (image, title, description, genre, director, cast) about a single movie to the user.
+  - Allows users to add or remove a movie from their list of favorites.
+
+- **Login View:**
+  - Allows users to log in with a username and password.
+
+- **Signup View:**
+  - Allows new users to register (username, password, email, date of birth).
+
+- **Profile View:**
+  - Displays user registration details.
+  - Allows users to update their info (username, password, email, date of birth).
+  - Displays favorite movies.
+  - Allows users to remove a movie from their list of favorites.
+  - Allows existing users to deregister.
 
 ## User Stories
 
@@ -29,7 +51,44 @@ The **MovieMax** project is a single-page, responsive application built using Re
 
 ## Setup and Installation
 
+Follow these steps to get MovieMax up and running on your local machine:
+
+1. **Clone the repository:**
+
+    ```sh
+    git clone https://github.com/jdeebs/moviemax-client.git
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```sh
+    cd moviemax-client
+    ```
+
+3. **Install dependencies:**
+
+    ```sh
+    npm install
+    ```
+
+4. **Run the application:**
+
+    ```sh
+    npx parcel public/index.html
+    ```
+
+    **Note:** It's recommended to use `npx parcel public/index.html` to ensure your project runs correctly with the appropriate Parcel version and to avoid compatibility issues from global installations.
+
 ## Usage
+
+1. Open your browser and navigate to `http://localhost:1234` to use the app locally.
+2. Create an account or log in with existing credentials.
+3. Browse through the list of movies, search for specific titles, and view detailed information.
+4. Add movies to your list of favorites, and manage your profile information.
+
+## Deployment
+
+The MovieMax app is deployed on Netlify and can be accessed [here](https://jdeebs-moviemax.netlify.app/).
 
 ## Contributing
 
