@@ -8,7 +8,6 @@ The **MovieMax** project is a single-page, responsive application built using Re
 
 - [Project Overview](#project-overview)
 - [Features](#features)
-  - [Views and Features](#views-and-features)
 - [User Stories](#user-stories)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
