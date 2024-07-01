@@ -7,6 +7,7 @@ import { ProfileUpdate } from "./profile-update";
 import { ProfileDelete } from "./profile-delete";
 import { FavoriteMovies } from "./favorite-movies";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 export const ProfileView = ({ username, token, onLogout, movies }) => {
   const [user, setUser] = useState({});
@@ -87,6 +88,9 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
     user.FavoriteMovies.includes(m._id)
   );
 
+  // Format date to "MM-DD-YYYY" ignoring the offset
+  const formattedBirthday = moment.utc(user.Birthday).format("MM-DD-YYYY");
+
   return (
     <Row className="justify-content-center">
       <Col lg={8}>
@@ -95,7 +99,7 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
           <UserInfo
             username={user.Username}
             email={user.Email}
-            birthday={formatDate(user.Birthday)}
+            birthday={formattedBirthday}
           />
         </div>
         <div className="profile-section mb-4 p-4">
@@ -133,30 +137,10 @@ export const ProfileView = ({ username, token, onLogout, movies }) => {
   );
 };
 
-// Format birthday date to look more user friendly
-const formatDate = (dateString) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return new Date(dateString).toDateString(undefined, options);
-};
-
-// Define props constraints for ProfileView
+// Define prop types for ProfileView
 ProfileView.propTypes = {
   username: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   onLogout: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-      ImagePath: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  movies: PropTypes.array.isRequired,
 };

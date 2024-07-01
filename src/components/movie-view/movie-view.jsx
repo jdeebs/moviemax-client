@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { Col, Row, Button, Container } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -43,9 +43,8 @@ export const MovieView = ({ user, token, onFavorite }) => {
   };
 
   return (
-    <Container className="mt-4">
-      <Row>
-        <Col md={6} className="mb-4">
+      <Row className="justify-content-center">
+        <Col md={6}>
           <img
             src={movie.ImagePath}
             alt={movie.Title}
@@ -53,51 +52,36 @@ export const MovieView = ({ user, token, onFavorite }) => {
           />
         </Col>
         <Col md={6}>
-          <h3 className="mb-3">{movie.Title}</h3>
-          <p>
-            <strong>Description: </strong> {movie.Description}
-          </p>
-          <p>
-            <strong>Genre: </strong> {movie.Genre.Name}
-          </p>
-          <p>
-            <strong>Director: </strong> {movie.Director.Name}
-          </p>
-          <p>
-            <strong>Cast: </strong> {movie.Actors.join(", ")}
-          </p>
-          <Link to={`/`}>
-            <Button className="back-button">Back</Button>
-          </Link>
-          <Button
-            onClick={handleFavorite}
-            variant={isFavorite ? "danger" : "primary"}
-            className="favorite-button"
-          >
-            {isFavorite ? "Unfavorite" : "Favorite"}
-          </Button>
+            <h3 className="mb-3">{movie.Title}</h3>
+            <p>
+              <strong>Description: </strong> {movie.Description}
+            </p>
+            <p>
+              <strong>Genre: </strong> {movie.Genre.Name}
+            </p>
+            <p>
+              <strong>Director: </strong> {movie.Director.Name}
+            </p>
+            <p>
+              <strong>Cast: </strong> {movie.Actors.join(", ")}
+            </p>
+            <Link to={`/`}>
+              <Button className="back-button">Back</Button>
+            </Link>
+            <Button
+              onClick={handleFavorite}
+              variant={isFavorite ? "danger" : "primary"}
+              className="favorite-button"
+            >
+              {isFavorite ? "Unfavorite" : "Favorite"}
+            </Button>
         </Col>
       </Row>
-    </Container>
   );
 };
 
 // Define props constraints for MovieCard
 MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-      }).isRequired,
-      Actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ).isRequired,
   user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired,
   onFavorite: PropTypes.func.isRequired,
